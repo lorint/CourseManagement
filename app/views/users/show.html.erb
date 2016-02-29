@@ -1,0 +1,15 @@
+<h3>My Pages</h3>
+<% if @user.is_provider %>
+	<%= form_for @user do |f| %>
+	  <%= f.fields_for :venues do |builder| %>
+	    <%= render("venue_fields", {f: builder}) %>
+	  <% end %>
+
+	  <div class="links">
+	    <%= link_to_add_association "Add venue", f, :venues %>
+	  </div>
+	  <%= f.submit %>
+  <% end %>
+<% else %>
+  <%= link_to 'Become a provider', become_provider_path %>
+<% end %>

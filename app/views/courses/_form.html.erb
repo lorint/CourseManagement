@@ -1,0 +1,15 @@
+<%= form_for @course do |f| %>
+	<%= f.text_field :title %>
+	<%= f.text_field :cost %>
+
+	<hr />
+	<%= f.fields_for :sessions do |builder| %>
+		<%= render("session_fields", {f: builder}) %>
+	<% end %>
+
+	<div class="links">
+		<%= link_to_add_association "Add session", f, :sessions %>
+	</div>
+
+	<%= f.submit "Create course" %>
+<% end %>
